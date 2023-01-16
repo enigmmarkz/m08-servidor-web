@@ -26,3 +26,6 @@ Al finalizar la práctica, deberás tener lo siguiente configurado (este listado
 Deberás crear un repositorio de GitHub privado y darme permisos para acceder a él (usuario pablo-molins). Incluye en tu repositorio un fichero README.md con las explicaciones de qué tienes que hacer para cumplir con lo especificado. Incluye, así mismo, los ficheros de configuración de nginx que modifiques, así como una copia de tu carpeta /var/www y todo su contenido. Sube como respuesta a esta tarea la URL de tu repositorio.
 
 # Explicaciones y procedimientos
+## Primero de todo asegurar que el sistema está actualizado
+  <pre><code>sudo apt-get update<code><pre>
+  <pre><code>sudo apt-get upgrade<code><pre>
