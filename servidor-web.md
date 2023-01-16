@@ -29,3 +29,25 @@ Deberás crear un repositorio de GitHub privado y darme permisos para acceder a 
 ## Primero de todo asegurar que el sistema está actualizado
 <pre><code>sudo apt-get update
 sudo apt-get upgrade</code></pre>
+## Instalar paquete Nginx y acceder al servidor
+<pre><code>sudo apt-get install nginx
+192.168.141.30 (ip de linux server donde está instalado nginx) en el navegador del host (Windows)</code></pre>
+## Para servir contenido estático en el directorio /var/www/ y añadir index.html hay que modificar el documento default con:
+<pre><code>sudo nano /etc/nginx/sites-available/default</code></pre>
+
+## y editar esta línea:
+<pre><code>root /var/www/html;</code></pre>
+
+## dejándola así:
+<pre><code>root /var/www</code></pre>
+
+## y editar esta otra línea:
+<pre><code>location/</code></pre>
+
+## dejándola así:
+<pre><code>location/index.html</code></pre>
+
+## Reiniciar servicio Nginx para aplicar cambios:
+<pre><code>sudo systemctl restart nginx.service</code></pre>
+
+## Clonar https://github.com/pmolrua/Chrono
