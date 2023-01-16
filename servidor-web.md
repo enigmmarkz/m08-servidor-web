@@ -27,5 +27,5 @@ Deberás crear un repositorio de GitHub privado y darme permisos para acceder a 
 
 # Explicaciones y procedimientos
 ## Primero de todo asegurar que el sistema está actualizado
-  <pre><code>sudo apt-get update
-  sudo apt-get upgrade</code></pre>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade</code></pre>
