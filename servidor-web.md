@@ -41,13 +41,46 @@ sudo apt-get upgrade</code></pre>
 ## dejándola así:
 <pre><code>root /var/www</code></pre>
 
-## y editar esta otra línea:
-<pre><code>location/</code></pre>
+## y editar el contenido del claudator:
+<pre><code>location / {</code></pre>
 
 ## dejándola así:
-<pre><code>location/index.html</code></pre>
+<pre><code>location / {
+    index index.html</code></pre>
 
 ## Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre>
 
-## Clonar https://github.com/pmolrua/Chrono
+## Instalar git con
+<pre><code>sudo apt-get install git</code></pre>
+
+## Clonar https://github.com/pmolrua/Chrono con:
+<pre><code>cd /home/provaserver
+sudo git clone https://github.com/pmolrua/Chrono</code></pre>
+
+## Editar documento default de nuevo y dentro del claudátor:
+<pre><code></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<pre><code></code></pre>
