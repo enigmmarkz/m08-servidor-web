@@ -131,13 +131,13 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
 }</code></pre>    
 
 ### En el mismo documento default, pero en el otro claudátor de server (le vamos a llamar claudátor server2), comentamos las líneas dirigidas al puerto 80 para que no interfieran:
-<pre><code>server {
+<pre><code>```server {
     listen 443 ssl;
 #   listen 80 default_server;
 #   listen [::] :80 default_server;
-}</code></pre>
+}```</code></pre>
     
-    
+
 
 <pre><code></code></pre>
 <pre><code></code></pre>
