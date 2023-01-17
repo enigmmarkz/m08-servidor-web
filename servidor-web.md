@@ -31,7 +31,7 @@ Deberás crear un repositorio de GitHub privado y darme permisos para acceder a 
 sudo apt-get upgrade</code></pre>
 ## Instalar paquete Nginx y acceder al servidor
 <pre><code>sudo apt-get install nginx
-192.168.141.30 (ip de linux server donde está instalado nginx) en el navegador del host (Windows)</code></pre>
+192.168.141.13 (ip de linux server donde está instalado nginx) en el navegador del host (Windows)</code></pre>
 ## Para servir contenido estático en el directorio /var/www/ y añadir index.html hay que modificar el documento default con:
 <pre><code>sudo nano /etc/nginx/sites-available/default</code></pre>
 
@@ -70,12 +70,23 @@ sudo git clone https://github.com/pmolrua/Chrono</code></pre>
 ## Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre>
 
+## Guardar fichero test.php en http://192.168.141.13/test.php y configurar el servidor para funcionar con PHP
 
+<pre><code>scp provaserver@192.168.141.13:/
+</code></pre>
 
+## Instalar paquetes de PHP
+<pre><code>sudo apt-get install php8.1-fpm
+sudo apt-get install php8.1-cli</code></pre>
 
-
-
-
+## Volvemos a editar el archivo default y dentro del claudátor de server añadimos:
+<pre><code>server {
+    location ~ \.php$ {
+    include snippets/fastcgi-php.conf;  
+    include fastcgi.conf;  
+    fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;  
+    }  
+}</code></pre
 
 
 
