@@ -121,7 +121,19 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
     ssl_certificate_key /etc/ssl/key.pem;
 </code></pre>
 
-##
+## Redirigir todo el tráfico de http a https y forzar navegación segura en toda su extensión: Volvemos a editar el archivo default y añadimos encima de server otro claudátor que se llame igual (server):
+<pre><code>server {
+    listen 80 default_server;
+    listen [::] :80 default_server;
+    server_name _;
+    return 301 https://$host$request_url;
+    }
+}</code></pre>    
+
+### En el mismo documento default, pero en el otro claudátor de server, comentamos las líneas dirigidas al puerto 80 para que no interfieran:
+<pre><code></code></pre>
+    
+    
 
 <pre><code></code></pre>
 <pre><code></code></pre>
