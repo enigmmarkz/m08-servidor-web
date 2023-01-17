@@ -26,40 +26,40 @@ Al finalizar la práctica, deberás tener lo siguiente configurado (este listado
 Deberás crear un repositorio de GitHub privado y darme permisos para acceder a él (usuario pablo-molins). Incluye en tu repositorio un fichero README.md con las explicaciones de qué tienes que hacer para cumplir con lo especificado. Incluye, así mismo, los ficheros de configuración de nginx que modifiques, así como una copia de tu carpeta /var/www y todo su contenido. Sube como respuesta a esta tarea la URL de tu repositorio.
 
 # Explicaciones y procedimientos
-## Primero de todo asegurar que el sistema está actualizado
+#### Primero de todo asegurar que el sistema está actualizado
 <pre><code>sudo apt-get update
 sudo apt-get upgrade</code></pre>
-## Instalar paquete Nginx y acceder al servidor
+#### Instalar paquete Nginx y acceder al servidor
 <pre><code>sudo apt-get install nginx
 192.168.141.13 (ip de linux server donde está instalado nginx) en el navegador del host (Windows)</code></pre>
 ## Para servir contenido estático en el directorio /var/www/ y añadir index.html hay que modificar el documento default con:
 <pre><code>sudo nano /etc/nginx/sites-available/default</code></pre>
 
-## y editar esta línea:
+#### y editar esta línea:
 <pre><code>root /var/www/html;</code></pre>
 
-## dejándola así:
+#### dejándola así:
 <pre><code>root /var/www</code></pre>
 
-## y editar el contenido del claudátor de location:
+#### y editar el contenido del claudátor de location:
 <pre><code>location / {</code></pre>
 
-## dejándola así:
+#### dejándola así:
 <pre><code>location / {
     index index.html
     }</code></pre>
 
-## Reiniciar servicio Nginx para aplicar cambios:
+#### Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre>
 
 ## Instalar git con
 <pre><code>sudo apt-get install git</code></pre>
 
-## Clonar https://github.com/pmolrua/Chrono con:
+#### Clonar https://github.com/pmolrua/Chrono con:
 <pre><code>cd /home/provaserver
 sudo git clone https://github.com/pmolrua/Chrono</code></pre>
 
-## Editar documento default de nuevo y dentro del claudátor de server añadir:
+#### Editar documento default de nuevo y dentro del claudátor de server añadir:
 <pre><code>server {
     location /Chrono {
         root /rutadelacarpeta/Chrono
@@ -67,20 +67,20 @@ sudo git clone https://github.com/pmolrua/Chrono</code></pre>
     }
 }</code></pre>
 
-## Reiniciar servicio Nginx para aplicar cambios:
+#### Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre>
 
-## Guardar fichero test.php en http://192.168.141.13/test.php y configurar el servidor para funcionar con PHP
+## Guardar fichero test.php en http://192.168.141.13/test.php y configurar el servidor para que funcione con PHP
 
 <pre><code>scp provaserver@192.168.141.13:/
 guardar fichero php en /var/www/
 </code></pre>
 
-### Instalar paquetes de PHP
+#### Instalar paquetes de PHP
 <pre><code>sudo apt-get install php8.1-fpm
 sudo apt-get install php8.1-cli</code></pre>
 
-### Volvemos a editar el archivo default y dentro del claudátor de server añadimos:
+#### Volvemos a editar el archivo default y dentro del claudátor de server añadimos:
 <pre><code>server {
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;  
@@ -89,12 +89,12 @@ sudo apt-get install php8.1-cli</code></pre>
     }  
 }</code></pre
 
-### Reiniciar servicio Nginx para aplicar cambios:
+#### Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre> 
 
 ## Descargar archivo 404.html y moverlo al directorio /var/www
     
-### Volvemos a editar el archivo default y dentro del claudátor de server, debajo de la línea server_name añadimos:    
+#### Volvemos a editar el archivo default y dentro del claudátor de server, debajo de la línea server_name añadimos:    
 <pre><code>server {
     error page 404 /404.html;
     location = /var/www/404.html {
@@ -110,12 +110,12 @@ cd /etc/ssl
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
 </code></pre>
 
-### Volvemos a editar el fichero default y dentro del claudátor de server, al principio de todo añadimos:
+#### Volvemos a editar el fichero default y dentro del claudátor de server, al principio de todo añadimos:
 <pre><code>server {
     listen 443 ssl;
 </code></pre>
 
-### Y justo encima de location / añadimos:
+#### Y justo encima de location / añadimos:
 <pre><code>server {
     ssl_certificate /etc/ssl/cert.pem;
     ssl_certificate_key /etc/ssl/key.pem;
