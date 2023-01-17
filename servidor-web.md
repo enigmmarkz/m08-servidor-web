@@ -62,8 +62,8 @@ sudo git clone https://github.com/pmolrua/Chrono</code></pre>
 ## Editar documento default de nuevo y dentro del claudátor de server añadir:
 <pre><code>server {
     location /Chrono {
-    root /rutadelacarpeta/Chrono
-    index index.htm index.php index.html;
+        root /rutadelacarpeta/Chrono
+        index index.htm index.php index.html;
     }
 }</code></pre>
 
@@ -73,6 +73,7 @@ sudo git clone https://github.com/pmolrua/Chrono</code></pre>
 ## Guardar fichero test.php en http://192.168.141.13/test.php y configurar el servidor para funcionar con PHP
 
 <pre><code>scp provaserver@192.168.141.13:/
+guardar fichero php en /var/www/
 </code></pre>
 
 ## Instalar paquetes de PHP
@@ -82,20 +83,45 @@ sudo apt-get install php8.1-cli</code></pre>
 ## Volvemos a editar el archivo default y dentro del claudátor de server añadimos:
 <pre><code>server {
     location ~ \.php$ {
-    include snippets/fastcgi-php.conf;  
-    include fastcgi.conf;  
-    fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;  
+        include snippets/fastcgi-php.conf;  
+        include fastcgi.conf;  
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;  
     }  
 }</code></pre
 
+## Reiniciar servicio Nginx para aplicar cambios:
+<pre><code>sudo systemctl restart nginx.service</code></pre> 
+
+## Descargar archivo 404.html y moverlo al directorio /var/www
+    
+## Volvemos a editar el archivo default y dentro del claudátor de server, debajo de la línea server_name añadimos:    
+<pre><code>server {
+    error page 404 /404.html;
+    location = /var/www/404.html {
+       root /var/www/404.html;
+       internal;
+    }
+}</code></pre>
+
+## Crear certificado autofirmado y configurar nginx para usar https, instalar openssl y configurarlo, seguir los comandos:
+    
+<pre><code>sudo apt-get install openssl
+cd /etc/ssl
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+</code></pre>
+
+## Volvemos a editar el fichero default y dentro del claudátor de server, al principio de todo añadimos:
+<pre><code>server {
+    listen 443 ssl;
+</code></pre>
+
+## Y justo encima de location / añadimos:
+<pre><code>server {
+    ssl_certificate /etc/ssl/cert.pem;
+    ssl_certificate_key /etc/ssl/key.pem;
+</code></pre>
 
 
-
-
-
-
-<pre><code></code></pre>
-<pre><code></code></pre>
 <pre><code></code></pre>
 <pre><code></code></pre>
 <pre><code></code></pre>
