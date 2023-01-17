@@ -76,11 +76,11 @@ sudo git clone https://github.com/pmolrua/Chrono</code></pre>
 guardar fichero php en /var/www/
 </code></pre>
 
-## Instalar paquetes de PHP
+### Instalar paquetes de PHP
 <pre><code>sudo apt-get install php8.1-fpm
 sudo apt-get install php8.1-cli</code></pre>
 
-## Volvemos a editar el archivo default y dentro del claudátor de server añadimos:
+### Volvemos a editar el archivo default y dentro del claudátor de server añadimos:
 <pre><code>server {
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;  
@@ -89,12 +89,12 @@ sudo apt-get install php8.1-cli</code></pre>
     }  
 }</code></pre
 
-## Reiniciar servicio Nginx para aplicar cambios:
+### Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre> 
 
 ## Descargar archivo 404.html y moverlo al directorio /var/www
     
-## Volvemos a editar el archivo default y dentro del claudátor de server, debajo de la línea server_name añadimos:    
+### Volvemos a editar el archivo default y dentro del claudátor de server, debajo de la línea server_name añadimos:    
 <pre><code>server {
     error page 404 /404.html;
     location = /var/www/404.html {
@@ -110,17 +110,18 @@ cd /etc/ssl
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
 </code></pre>
 
-## Volvemos a editar el fichero default y dentro del claudátor de server, al principio de todo añadimos:
+### Volvemos a editar el fichero default y dentro del claudátor de server, al principio de todo añadimos:
 <pre><code>server {
     listen 443 ssl;
 </code></pre>
 
-## Y justo encima de location / añadimos:
+### Y justo encima de location / añadimos:
 <pre><code>server {
     ssl_certificate /etc/ssl/cert.pem;
     ssl_certificate_key /etc/ssl/key.pem;
 </code></pre>
 
+##
 
 <pre><code></code></pre>
 <pre><code></code></pre>
