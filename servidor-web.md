@@ -52,7 +52,7 @@ sudo apt-get upgrade</code></pre>
 #### Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre>
 
-## Instalar git con
+## Instalar git con:
 <pre><code>sudo apt-get install git</code></pre>
 
 #### Clonar https://github.com/pmolrua/Chrono con:
@@ -70,7 +70,7 @@ sudo git clone https://github.com/pmolrua/Chrono</code></pre>
 #### Reiniciar servicio Nginx para aplicar cambios:
 <pre><code>sudo systemctl restart nginx.service</code></pre>
 
-## Guardar fichero test.php en http://192.168.141.13/test.php y configurar el servidor para que funcione con PHP
+## Guardar fichero test.php en http://192.168.141.13/test.php y configurar el servidor para que funcione con PHP:
 
 <pre><code>scp provaserver@192.168.141.13:/
 guardar fichero php en /var/www/
