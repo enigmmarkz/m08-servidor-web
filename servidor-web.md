@@ -113,15 +113,15 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
 #### Volvemos a editar el fichero default y dentro del claudátor de server, al principio de todo añadimos:
 <pre><code>server {
     listen 443 ssl;
-</code></pre>
+}</code></pre>
 
 #### Y justo encima de location / añadimos:
 <pre><code>server {
     ssl_certificate /etc/ssl/cert.pem;
     ssl_certificate_key /etc/ssl/key.pem;
-</code></pre>
+}</code></pre>
 
-## Redirigir todo el tráfico de http a https y forzar navegación segura en toda su extensión: Volvemos a editar el archivo default y añadimos encima de server otro claudátor que se llame igual (server):
+## Redirigir todo el tráfico de http a https y forzar navegación segura en toda su extensión: Volvemos a editar el archivo default y añadimos encima de server otro claudátor que se llame igual (server) (le vamos a llamar claudátor server1):
 <pre><code>server {
     listen 80 default_server;
     listen [::] :80 default_server;
@@ -130,8 +130,12 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
     }
 }</code></pre>    
 
-### En el mismo documento default, pero en el otro claudátor de server, comentamos las líneas dirigidas al puerto 80 para que no interfieran:
-<pre><code></code></pre>
+### En el mismo documento default, pero en el otro claudátor de server (le vamos a llamar claudátor server2), comentamos las líneas dirigidas al puerto 80 para que no interfieran:
+<pre><code>server {
+    listen 443 ssl;
+#   listen 80 default_server;
+#   listen [::] :80 default_server;
+}</code></pre>
     
     
 
